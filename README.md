@@ -194,4 +194,55 @@ fun main(){
     b.describe()
 }
 
+---------------------------------------------------------------Online Food Delivery Order System------------------------------------------------------------------------------
+
+
+class FoodOrder(customerName:String,private var orderId:Int){
+    private var customerFullName:String
+     private var items: MutableList<String> = mutableListOf()
+    
+    private var prices: MutableList<Double> = mutableListOf()
+   
+        private var deliveryFee: Double = 100.0 
+    
+    init{
+        customerFullName=customerName.trim()
+    }
+    fun addItem(item:String,price:Double){
+        if(price >= 0 ){
+            (items.add(item))
+            (prices.add(price))
+        }else{
+            println("Warning!!!")
+        }
+    }
+
+
+fun getTotalBill():Double{
+    return if (items.isNotEmpty()){
+        prices.sum()+deliveryFee
+    }else{
+        0.0
+    }
+}
+
+
+
+fun showOrderDetails(){
+    println("customerName  :$customerFullName ")
+    println("orderId       :$orderId")
+    println("items         :$items")
+    println("prices        :$prices")
+    println("deliveryFee   :$deliveryFee")
+    println("getTotalBill  :${getTotalBill()}")
+}
+}
+fun main(){
+    val order = FoodOrder("  Fatima  ", 101)
+order.addItem("Burger", 450.0)
+order.addItem("Fries", 150.0)
+order.addItem("Cola", 90.0)
+order.showOrderDetails()
+
+}
 
